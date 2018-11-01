@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// meme meme meme test
+// mtest
 
 // This function takes a character to print, an integer n for the amount of times to print,
 // and an integer space indicating if the user would like spaces between their characters.
