@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// branch test
+// edit branch commit
 
 // This function takes a character to print, an integer n for the amount of times to print,
 // and an integer space indicating if the user would like spaces between their characters.
