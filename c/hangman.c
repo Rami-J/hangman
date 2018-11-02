@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-// edit branch commit
-
 // This function takes a character to print, an integer n for the amount of times to print,
 // and an integer space indicating if the user would like spaces between their characters.
 // (0 for no, 1 for yes)
@@ -152,16 +150,15 @@ void hangman(int difficulty)
 			break;
 		}
 
-		for (j = 0; j < word_length; j++)
+		// if statement that checks whether the character guessed and the position it's located matches
+		// with the source string.
+		if (guess == source[position - 1])
 		{
-		  if (guess == source[j])
-		  {
-			 dest[j] = source[j];
-			 guess_right = 1;
-			 //printf("%s\n", dest);
-		  }
+			dest[position - 1] = source[position - 1];
+			guess_right = 1;
 		}
 
+		// if-else block that tells the user if he/she guessed correctly or incorrectly.
 		if (guess_right == 0)
 		{
 		  num_guesses--;
