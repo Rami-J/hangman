@@ -66,10 +66,10 @@ void scramble_string(char *str)
 }
 
 // Function that takes an integer that represents the difficulty level (1-5) and starts the hangman
-// game. The player can only make 5 or less incorrect guesses before he loses.
+// game. The player can only make up to 5 incorrect guesses before he loses.
 void hangman(int difficulty)
 {
-	int i, j, k;
+	int i, j;
 	int field_width = 50;
 	int num_guesses = 5;
 	int guess_right = 0;
@@ -95,6 +95,7 @@ void hangman(int difficulty)
 		//field_width++;
 	}
 
+	// fix field width for hangman line
 	printf("\n\n%*s", field_width, "** Hangman **\n\n");
 	printf("%36s", "");
 	print_char('*', word_length * 2 - 1, 0);
@@ -115,6 +116,7 @@ void hangman(int difficulty)
 
 	while (strcmp(source, dest) != 0)
 	{
+		// implement availale characters displayed to screen, dissapear as user gets right.
 		printf("scrambled word: %s\n\n", scrambled_str);
 		printf("Enter a character. (Or enter 0 to quit)\n");
 		scanf("%c", &guess);
@@ -179,9 +181,9 @@ void hangman(int difficulty)
 		  print_char('.', word_length, 1);
 		  printf("\n%36s", "");
 
-		  for (k = 0; k < word_length; k++)
+		  for (j = 0; j < word_length; j++)
 		  {
-			 printf("%c ", dest[k]);
+			 printf("%c ", dest[j]);
 		  }
 
 		  printf("\n%36s", "");
