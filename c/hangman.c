@@ -43,14 +43,17 @@ int value_is_in_array(int *index_arr, int length, int val)
 // in a scrambled string.
 void scramble_string(char *str)
 {
-	int i, j = 0, length = strlen(str), rand_index, index_exceptions[100];
-	char dest[100] = "";
+	int i, j = 0, length = strlen(str), rand_index;
+	char *dest = malloc(sizeof(char) * (length + 1));
+	int *index_exceptions = malloc(sizeof(int) * length);
 
+	// loop that sets all indices to not consider when scrambling the string to -1
 	for (i = 0; i < length; i++)
 	{
 		index_exceptions[i] = -1;
 	}
 
+	// loop that randomly generates an index each iteration to place each character in the string
 	while (j < length)
 	{
 		rand_index = rand() % length;
@@ -62,7 +65,10 @@ void scramble_string(char *str)
 			j++;
 		}
 	}
+
 	strcpy(str, dest);
+	free(dest);
+	free(index_exceptions);
 }
 
 // Function that takes an integer that represents the difficulty level (1-5) and starts the hangman
@@ -95,7 +101,7 @@ void hangman(int difficulty)
 		//field_width++;
 	}
 
-	// fix field width for hangman line
+	// TODO: fix field width for hangman line
 	printf("\n\n%*s", field_width, "** Hangman **\n\n");
 	printf("%36s", "");
 	print_char('*', word_length * 2 - 1, 0);
@@ -126,7 +132,7 @@ void hangman(int difficulty)
 		  break;
 		}
 
-		while (getchar() != '\n');
+		//while (getchar() != '\n');
 
 		printf("Enter a position to place the character. (1 - %d) (Or enter 0 to quit)\n", word_length);
 		scanf("%d", &position);
@@ -205,19 +211,24 @@ void hangman(int difficulty)
 
 int main(void)
 {
-	srand(time(NULL));
 	int difficulty;
+	char temp;
+	srand(time(NULL));
 
 	printf("Please enter a difficulty level 1-5.\n");
 	scanf("%d", &difficulty);
 
+	// loop that accounts for invalid difficulty level
 	while (difficulty < 1 || difficulty > 5)
 	{
 		printf("Please enter a valid difficulty level (1-5).\n");
 		scanf("%d", &difficulty);
 	}
 
-	while (getchar() != '\n');
+	// TODO: create clear_buffer() function
+	// consumes new-line character from the current buffer
+	scanf("%c", &temp);
+	//while (getchar() != '\n');
 
 	hangman(difficulty);
 	return 0;
